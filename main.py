@@ -34,10 +34,3 @@ class Figure(Figures):
             p = 1 / 2 * (a + b + c)
             return (p * (p - a) * (p - b) * (p - c)) ** (1 / 2)
 
-
-figure = Figure('circle')
-square = figure.calculate_square(radius=2)
-print(square)
-figure = Figure('triangle')
-square = figure.calculate_square(a=4, b=4, c=2)
-print(square)
