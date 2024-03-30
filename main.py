@@ -19,11 +19,31 @@ class Figure(Figures):
     def __init__(self, type):
         self.type = type
 
+    @staticmethod
+    def check_rectangular(a=None, b=None, c=None):
+        max_number = max(a, b, c)
+        min_number = min(a, b, c)
+        ost_number = a + b + c - max_number - min_number
+        if max_number ** 2 == min_number ** 2 + ost_number ** 2:
+            return 'равнобедренный'
+        else:
+            return 'неравнобедренный'
+
     def calculate_square(self, **kwargs):
-        if self.type == 'circle':
-            return self.calculate_circle(**kwargs)
-        elif self.type == 'triangle':
-            return self.calculate_triangle(**kwargs)
+
+        if self.type == 'круг':
+            radius = float(input('Введите радиус круга\n)'))
+            return self.calculate_circle(radius=radius)
+
+        elif self.type == 'треугольник':
+            a = float(input('Введите 1-ую сторону треугольника\n'))
+            b = float(input('Введите 2-ую сторону треугольника\n'))
+            c = float(input('Введите 3-ую сторону треугольника\n'))
+            if a + b > c and a + c > b and b + c > a:
+                return self.calculate_triangle(a = a, b = b, c = c)
+            else:
+                return "Треугольник не существует"
+
 
     def calculate_circle(self, radius=None):
         if radius:
@@ -35,9 +55,4 @@ class Figure(Figures):
             return (p * (p - a) * (p - b) * (p - c)) ** (1 / 2)
 
 
-figure = Figure('circle')
-square = figure.calculate_square(radius=2)
-print(square)
-figure = Figure('triangle')
-square = figure.calculate_square(a=4, b=4, c=2)
-print(square)
+
